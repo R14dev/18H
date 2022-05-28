@@ -1,0 +1,50 @@
+
+<%- include('../inc/header.ejs',{Title})  %> 
+<%- include('../inc/menu.ejs') %> 
+<div class='allCntente'>
+    <div class='contents'>
+    <section class='post-detahes'>
+        <article class='post-width1'>
+            <div class='pic-detalhes'>
+                <span style='color: #fff; height: 30px; margin: 10px; line-height: 30px; font-size:13px;font-family:sans-serif;font-style:bold;'>點擊圖片翻頁。 .</span>   
+                <span style='color: #fff; height: 30px; margin: 10px; line-height: 30px; font-size:13px;font-family:sans-serif;font-style:bold;'>Tap on image to turn the page..</span>   
+                <% var P = Page %> 
+                <% gallerieImage.forEach((g)=>{ %><% if ( Page == Pagination){  %>
+            <a href="/d/<%= Id %>">
+                <img class="imapic"  src="<%= Link %><%= g.fotos_gale %>"  alt="hentai manga" srcset="<%= Link %><%= g.fotos_gale %>">  </a>  <% } else{ %> 
+                    <a href="/d/<%= Id %>/<%= ++Page %>  ">
+                <img class="imapic" src="<%= Link %><%= g.fotos_gale %>" alt="hentai manga" srcset="<%= Link %><%= g.fotos_gale %>"> </a> <% } %> <%  }) %>
+            </div>
+            </article>
+</section>
+</div>
+</div>
+<%- include('../inc/mob4.ejs') %> 
+<div class="pagination-vs">
+    <section class='paginacao'>
+       <style>
+           .paginacao{
+               text-align:center;
+           }
+       </style>
+   <nav>
+    <ul class='nav' style='display:inline-table; text-align:center;width: 60%; list-style:none; margin:0 auto;'>
+        <%  if(Pagination == P){ %>
+            <% var i = (P > 1 ) ? P -2 : 1; %> 
+            <li> <a href="/d/<%= Id %>/<%= i %> "><div class="navic"><div class="navic">上一頁</div></div></a></li>
+            <li> <a href="/d/<%= Id %>"><div class="navic"><div class="navic">下一個</div></div></a></li>
+            <%  }else if( P == 1){%>  
+        <li> <a href="/d/<%= Id %>/1"><div class="navic">上一頁</div></a></li>
+        <li> <a href="/d/<%= Id %>/2"><div class="navic">下一個</div></a></li>
+        <% }else{ %> 
+           
+            <% var i = 1; if( parseInt(P) == 1) { i = 1}else{ i = P - 1} %> 
+            <li> <a href="/d/<%= Id %>/<%= i %> "><div class="navic">上一頁</div></a></li>
+            <li> <a href="/d/<%= Id %>/<%= Page %>"><div class="navic">下一個</div></a></li>
+            <% } %> 
+        </ul> 
+           </nav>   
+   </section>
+</div>
+
+<%- include('../inc/footer.ejs',{Title})  %> 

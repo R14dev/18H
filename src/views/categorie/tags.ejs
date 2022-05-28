@@ -1,0 +1,15 @@
+
+<%- include('../inc/header.ejs',{Title}) %> 
+<%- include('../inc/menu.ejs') %> 
+<%- include('../inc/mob.ejs') %> 
+<section class="X-tags" style="text-align: center;">
+    <h1 class="tags">Tags</h1>
+    <nav class="iNav">
+       <ul class='nav'>
+        <% C.forEach((c)=>{ %> 
+            <li><a href="/c/<%= c.categoria_url %> "><div class="navic"><b><%= c.cateName  %></b></div> </a></li>
+            <% }); %> 
+        </ul>
+    </nav>
+</section>
+<%- include('../inc/footer.ejs') %> 

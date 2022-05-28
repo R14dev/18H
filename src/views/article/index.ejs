@@ -1,0 +1,92 @@
+<%- include('../inc/header.ejs',{Title,Descrisao}) %> 
+<%- include('../inc/menu.ejs') %> 
+<%- include('../inc/mob2.ejs') %> 
+<div class='allCntente xui'>
+    <div class='contents'>
+    <section class='post-detahes large-container bg-container container-xl'>
+        <div class="detalhes"> <a href="/d/<%= Id %>/1" title="<%= Title  %>" alt="<%= Title  %>">
+            <article class='post-width1'>
+                <div class='pic-detalhes'>
+                    <img class='imapic' src="/images/loading-animated-small.svg" name="relatedlazy" data="<%= Link %><%= ImagePost %> " att="<%= Id %> " alt="<%= Title  %>" />
+                </div>
+            </article>
+            </a>
+          
+       </div>
+        <div class="detalhes">
+            <nav class="navli">
+                <ul>
+                    <li><label for="oldTitle"><h1 style="font-size: larger;font-weight: 600;"><%= oldTitle %></h1> </label></li>
+                    <li><label for="post_name"><%= Title %> </label></li>
+                    <li><label for="post_name">Tags:
+                        <%- Tags %> 
+                    </label></li>
+                    <li> <label for="views"> <i class="fa fa-eye" aria-hidden="true"> </i></label><label for="language"><%= vsH %> </label></li>
+                    <li> <label for="ideoma">Language: </label><label for="language"><a href="/l/<%= language %>" style="text-decoration: none;"><img src="<%= languageurlimg %>" alt="<%= language %> " style="display:inline-table;float:left;width:20px;margin:5px;height:20px; text-decoration: none;" /><%= language %> </a></label></li>
+                    <li><label for="total">Pages: 
+                        <% var i =0; for (let index = 0; index < Gallerie.length; index++) {
+                            i = i + 1;
+                        } %> <%= i %> </label></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <%- include('../inc/mob.ejs') %> 
+    <section class='detalhes-viewsc xuirela large-container bg-container container-xl'>
+        <div>
+            <h2 class='previews' style="font-size: 16px;"><%= Title  %> Preview </h2>
+                <nav>
+                    <ul class='navs preview-image large-container bg-container container-xl'>
+                        <% for (let index = 1; index < Gallerie.length; index++) { %>
+                            <% if(index == 14 ) continue %> 
+                            <li><a href="/d/<%= Id %>/<%= index %> "><img src="/images/loading-animated-small.svg"   class='imapics lazy small-bg-load entered loading' att="<%= Gallerie[index].id %> " data="<%= Link %><%= Gallerie[index].fotos_gale %>" attr="<%- Link %><%- Gallerie[index].fotos_gale %>" name="loading" alt="<%= Title  %>" ></a></li>
+                        <% } %> 
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <%- include('../inc/mob3.ejs') %> 
+    <section class='detalhes-viewsc large-container bg-container container-xl"'>
+    <h2 class='previews large-container bg-container container-xl"'>Related</h2>
+    <section class="" style="text-align:center;">
+    <ul class='' style="margin: 0; padding: 0;" >
+        <% RelatedPost.forEach( function (Related){ %> 
+            <a href="/d/<%= Related.id_am %> ">
+                <article class='imapics cvmm' >
+                    <div class='pic'>
+                        <% var img = Related.foto_capa %> 
+                        <img class='imapics cvmm'  src="/images/loading-animated-small.svg" name="relatedlazy" data="<%= Link %><%= Related.foto_capa %>" att="<%= Related.id_am %>" class="" alt="<%= Related.post_name %> " >
+                    </div>
+                    <div class='description'>
+                        <% 
+                  function getLingua(l){
+                        switch (l) {
+                            case 'Portugues':
+                            return '/images/brazil.png'
+                                break;
+                            case 'Inglesh':
+                            return'/images/inglesh.png'
+                            break;
+                            case 'Japan':
+                            return'/images/japan.png'
+                            break;
+                            case 'Chines':
+                            return'/images/china.png'
+                            break;
+                            case 'korea':
+                            return '/images/south-korea.png'
+                            break;
+                        }
+                    }
+                             %> 
+                       <div style='width:100%;display:block;'><img src="<%= getLingua(Related.ideoma) %>" style="display:inline-table;float:left;width:20px;margin:5px;height:20px;"><h1 class="title">  Book id#<%= Related.id_am %></h1></div>
+                       </div>
+            </article>
+            </a>
+      <%}) %>
+    </section>    
+    </section>
+    </div>
+</div> 
+
+<%- include('../inc/footer.ejs') %> 
